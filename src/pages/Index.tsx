@@ -186,6 +186,10 @@ export default function Index() {
     setParticles([]);
   };
 
+  const stopGame = () => {
+    setGameStarted(false);
+  };
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="relative">
@@ -235,10 +239,21 @@ export default function Index() {
                 {score}
               </div>
             </div>
-            <div className="bg-black/50 px-6 py-3 rounded-lg backdrop-blur-sm border-2 border-secondary/50">
-              <div className="text-sm text-muted-foreground">УНИЧТОЖЕНО</div>
-              <div className="text-3xl font-bold text-secondary" style={{ textShadow: '0 0 10px #ff00ff' }}>
-                {destroyed}
+            <div className="flex gap-2">
+              {gameStarted && (
+                <button
+                  onClick={stopGame}
+                  className="px-6 py-3 text-lg font-bold bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/80 transition-all backdrop-blur-sm"
+                  style={{ boxShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}
+                >
+                  СТОП
+                </button>
+              )}
+              <div className="bg-black/50 px-6 py-3 rounded-lg backdrop-blur-sm border-2 border-secondary/50">
+                <div className="text-sm text-muted-foreground">УНИЧТОЖЕНО</div>
+                <div className="text-3xl font-bold text-secondary" style={{ textShadow: '0 0 10px #ff00ff' }}>
+                  {destroyed}
+                </div>
               </div>
             </div>
           </div>
